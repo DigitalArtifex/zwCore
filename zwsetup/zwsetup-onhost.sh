@@ -53,7 +53,7 @@ esac
 MIRROR="http://tinycorelinux.net/$VER/armv6/tcz"
 
 WIRELESS_DEPS="$(sh ./zwsetup-wireless.sh -d)"
-WIRELESS_DEPS="$WIRELESS_DEPS $WIRELESS_MODULE $WIRELESS_FIRMWARE"
+WIRELESS_DEPS="${WIRELESS_DEPS} ${WIRELESS_MODULE} ${WIRELESS_FIRMWARE}"
 
 if ! test -d "$TCEDIR/optional" ; then
 	mkdir "$TCEDIR/optional"
@@ -108,6 +108,8 @@ for DEP in ${WIRELESS_DEPS}; do
 		fi
 		
 		#add additional deps to the download queue
-		WIRELESSDEPS="$WIRELESSDEPS $DEP"
+		WIRELESSDEPS="${WIRELESSDEPS} ${DEP}"
 	fi
 done
+
+echo "All dependencies passed verification."

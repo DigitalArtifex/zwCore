@@ -23,7 +23,7 @@ add_missing() {
 	if [ ${#MISSINGDEPLIST} = 0 ]; then
 		MISSINGDEPLIST="$1"
 	else
-		MISSINGDEPLIST="$MISSINGDEPLIST:$1"
+		MISSINGDEPLIST="${MISSINGDEPLIST}:$1"
 	fi;
 	
 	HASMISSINGDEPS=1
@@ -39,15 +39,10 @@ do
     esac
 done
 
-DEPS=""
-DEPS="$DEPS libnl.tcz"
-DEPS="$DEPS ncurses.tcz"
-DEPS="$DEPS readline.tcz"
-DEPS="$DEPS iw.tcz"
-DEPS="$DEPS ca-certificates.tcz"
+DEPS="libnl.tcz ncurses.tcz readline.tcz iw.tcz ca-certificates.tcz"
 
 if [ $DUMPDEPS = 1 ] ; then
-	$DEPS="$DEPS openssl.tcz wireless_tools.tcz wpa_supplicant.tcz"
+	DEPS="${DEPS} openssl.tcz wireless_tools.tcz wpa_supplicant.tcz"
 	
 	echo $DEPS
 	exit 0
